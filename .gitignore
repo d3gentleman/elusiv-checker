@@ -1,0 +1,5 @@
+node_modules/
+_vendor/
+.env
+.env.local
+*.tgz

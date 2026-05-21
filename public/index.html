@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elusiv Wallet Checker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Elusiv wallet checker</h1>
+      <p class="subtitle">Mainnet · works best with a free <a href="https://dashboard.helius.dev" target="_blank" rel="noopener">Helius</a> API key</p>
+    </header>
+
+    <form id="check-form" class="card">
+      <label for="address">Solana address</label>
+      <div class="row">
+        <input
+          id="address"
+          name="address"
+          type="text"
+          placeholder="e.g. 7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        />
+        <button type="submit" id="submit-btn">Check</button>
+      </div>
+    </form>
+
+    <p id="error" class="error" hidden></p>
+
+    <section id="results" class="card results" hidden>
+      <h2>Results</h2>
+      <p class="address-line"><span class="label">Wallet</span> <code id="out-address"></code></p>
+
+      <div class="stats">
+        <article class="stat">
+          <span class="stat-label">Interacted with Elusiv</span>
+          <span class="stat-value" id="out-interacted">—</span>
+        </article>
+        <article class="stat">
+          <span class="stat-label">Total deposited (SOL)</span>
+          <span class="stat-value" id="out-deposited">—</span>
+        </article>
+        <article class="stat">
+          <span class="stat-label">Total deposited (USDC)</span>
+          <span class="stat-value" id="out-deposited-usdc">—</span>
+        </article>
+        <article class="stat">
+          <span class="stat-label">Total withdrawn (SOL)</span>
+          <span class="stat-value" id="out-withdrawn">—</span>
+        </article>
+        <article class="stat">
+          <span class="stat-label">Total withdrawn (USDC)</span>
+          <span class="stat-value" id="out-withdrawn-usdc">—</span>
+        </article>
+        <article class="stat">
+          <span class="stat-label">Deposit count</span>
+          <span class="stat-value" id="out-deposit-count">—</span>
+        </article>
+        <article class="stat">
+          <span class="stat-label">Withdrawal count</span>
+          <span class="stat-value" id="out-withdraw-count">—</span>
+        </article>
+        <article class="stat">
+          <span class="stat-label">Elusiv txs (signed)</span>
+          <span class="stat-value" id="out-elusiv-txs">—</span>
+        </article>
+        <article class="stat">
+          <span class="stat-label">Signatures scanned</span>
+          <span class="stat-value" id="out-scanned">—</span>
+        </article>
+        <article class="stat wide">
+          <span class="stat-label">First / last activity</span>
+          <span class="stat-value" id="out-dates">—</span>
+        </article>
+      </div>
+
+      <h3>Recent pool movements</h3>
+      <ul id="out-recent" class="recent-list"></ul>
+
+      <ul id="out-notes" class="notes"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
