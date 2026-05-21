@@ -42,3 +42,14 @@ See `PROGRAM_IDS.md` for on-chain addresses.
 - SOL and USDC only (other Elusiv tokens not summed yet)
 - Helius path: up to 300 recent transactions (3 × 100)
 - RPC fallback: up to 80 recent signatures
+
+## GitHub
+
+This project keeps secrets out of git (`.env` is ignored; use `.env.example` as a template).
+
+To create the remote repo and push (one-time, after [GitHub CLI](https://cli.github.com/) login):
+
+```powershell
+gh auth login
+.\scripts\publish-github.ps1
+```
