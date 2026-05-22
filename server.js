@@ -30,7 +30,7 @@ app.post('/api/check', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+function logStartup() {
   const heliusKey = extractHeliusApiKey(RPC_URL);
   console.log(`Elusiv checker running at http://localhost:${PORT}`);
   if (heliusKey) {
@@ -40,4 +40,11 @@ app.listen(PORT, () => {
     console.log(`Data source: standard RPC — ${RPC_URL}`);
     console.log('Tip: set HELIUS_API_KEY in .env for reliable free-tier checks');
   }
-});
+}
+
+// Vercel imports this file as a serverless handler — do not call listen() there.
+if (require.main === module) {
+  app.listen(PORT, logStartup);
+}
+
+module.exports = app;

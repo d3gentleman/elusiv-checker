@@ -43,6 +43,18 @@ See `PROGRAM_IDS.md` for on-chain addresses.
 - Helius path: up to 300 recent transactions (3 × 100)
 - RPC fallback: up to 80 recent signatures
 
+## Deploy on Vercel
+
+`server.js` exports the Express app for Vercel’s serverless runtime (no `vercel.json` required). Local dev still uses `npm start` as usual.
+
+1. Import or connect the repo in the [Vercel dashboard](https://vercel.com).
+2. Add **Environment variables** (Production and Preview):
+   - `HELIUS_API_KEY` — recommended (same as local `.env`)
+   - Optional: `SOLANA_RPC_URL`, `HELIUS_MAX_PAGES`
+3. Redeploy after changing env vars.
+
+Without `HELIUS_API_KEY`, checks fall back to the public Solana RPC and may hit rate limits.
+
 ## GitHub
 
 This project keeps secrets out of git (`.env` is ignored; use `.env.example` as a template).
