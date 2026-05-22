@@ -4,12 +4,14 @@
   "private": true,
   "description": "Check Solana wallets for Elusiv pool deposits and withdrawals",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@solana/web3.js": "^1.98.0",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "next": "^15.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }

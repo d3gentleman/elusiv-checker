@@ -5,18 +5,18 @@ Simple web UI to check whether a Solana wallet deposited to or withdrew from the
 ## Quick start (free tier — recommended)
 
 1. Create a **free** API key at [Helius Dashboard](https://dashboard.helius.dev) (no credit card on free plan).
-2. Copy `.env.example` to `.env` and set your key:
+2. Copy `.env.example` to `.env.local` and set your key:
 
 ```bash
-cp .env.example .env
-# Edit .env: HELIUS_API_KEY=your_key_here
+cp .env.example .env.local
+# Edit .env.local: HELIUS_API_KEY=your_key_here
 ```
 
 3. Run:
 
 ```bash
 npm install
-npm start
+npm run dev
 ```
 
 Open http://localhost:3000
@@ -45,13 +45,12 @@ See `PROGRAM_IDS.md` for on-chain addresses.
 
 ## Deploy on Vercel
 
-`server.js` exports the Express app for Vercel’s serverless runtime (no `vercel.json` required). Local dev still uses `npm start` as usual.
+This is a [Next.js](https://nextjs.org) app. Connect the repo in the [Vercel dashboard](https://vercel.com) (framework is auto-detected).
 
-1. Import or connect the repo in the [Vercel dashboard](https://vercel.com).
-2. Add **Environment variables** (Production and Preview):
-   - `HELIUS_API_KEY` — recommended (same as local `.env`)
-   - Optional: `SOLANA_RPC_URL`, `HELIUS_MAX_PAGES`
-3. Redeploy after changing env vars.
+Add **Environment variables** (Production and Preview):
+
+- `HELIUS_API_KEY` — recommended (same as local `.env.local`)
+- Optional: `SOLANA_RPC_URL`, `HELIUS_MAX_PAGES`
 
 Without `HELIUS_API_KEY`, checks fall back to the public Solana RPC and may hit rate limits.
 

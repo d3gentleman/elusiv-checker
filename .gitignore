@@ -3,3 +3,6 @@ _vendor/
 .env
 .env.local
 *.tgz
+.vercel
+.next/
+next-env.d.ts
