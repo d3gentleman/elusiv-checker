@@ -33,10 +33,22 @@ header h1 {
   font-weight: 600;
 }
 
-.subtitle {
+.subtitle,
+.subtitle-hint {
   margin: 0;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+.subtitle-hint {
+  margin-top: 0.5rem;
+  max-width: 42rem;
+  line-height: 1.45;
+}
+
+.subtitle a,
+.subtitle-hint a {
+  color: var(--accent);
 }
 
 .card {
