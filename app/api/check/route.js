@@ -1,16 +1,31 @@
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
-const { checkWallet } = require('../../../lib/checker');
-const { DEFAULT_RPC } = require('../../../lib/constants');
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
-const RPC_URL = process.env.SOLANA_RPC_URL || DEFAULT_RPC;
+function loadChecker() {
+  const { checkWallet } = require('../../../lib/checker');
+  const { DEFAULT_RPC } = require('../../../lib/constants');
+  const rpcUrl = process.env.SOLANA_RPC_URL || DEFAULT_RPC;
+  return { checkWallet, rpcUrl };
+}
 
 export async function POST(request) {
+  let checkWallet;
+  let rpcUrl;
+  try {
+    ({ checkWallet, rpcUrl } = loadChecker());
+  } catch (err) {
+    console.error('Failed to load checker:', err);
+    return Response.json(
+      { error: `Server module error: ${err.message}` },
+      { status: 500 },
+    );
+  }
+
   let body;
   try {
     body = await request.json();
@@ -24,7 +39,7 @@ export async function POST(request) {
   }
 
   try {
-    const result = await checkWallet(address, RPC_URL);
+    const result = await checkWallet(address, rpcUrl);
     return Response.json(result);
   } catch (err) {
     console.error('checkWallet failed:', err);
